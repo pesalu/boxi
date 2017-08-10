@@ -31,10 +31,21 @@ public class InitialDataLoader implements
         Account accountAdmin = new Account("pekka", passwordEncoder.encode("puupaa"), "ROLE_ADMIN");
         Account accountUser = new Account("kalle", passwordEncoder.encode("kustaa"), "ROLE_USER");
 
-        accountRepository.save(accountAdmin);
-        accountRepository.save(accountUser);
+
+        //accountRepository.save(accountAdmin);
+        //accountRepository.save(accountUser);
+        saveAccountNotFoundFromDb(accountAdmin);
+        saveAccountNotFoundFromDb(accountUser);
 
         alreadySetup = true;
+    }
+
+    @Transactional
+    private void saveAccountNotFoundFromDb(Account account){
+        Account daccount = accountRepository.findByUsername(account.getUsername());
+        if (daccount == null) {
+            accountRepository.save(account);
+        }
     }
 
 /*    @Transactional

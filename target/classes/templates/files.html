@@ -10,11 +10,10 @@
     <ul th:each="fileobject : ${fileobjects}">
         <li>
             <div>
-                <!-- <form th:action="@{/itembook/} + @{${item.id}}" th:method="delete" >
-                    <a th:href="@{/itembook/} + @{${item.id}}" th:text="${item.name} + ' ' + ${item.type}"></a>
-                    <button type="submit" >Delete!</button>
-                </form> -->
-                <a th:href="@{/files/} + @{${fileobject.id}}"   th:text="${fileobject.name} + ' ' + ${fileobject.type}"></a>
+                    <a th:href="@{/files/} + @{${fileobject.id}}"   th:text="${fileobject.name} + ' ' + ${fileobject.type}"></a>
+                    <form th:action="@{/files/} + @{${fileobject.id}}" th:method="delete" >
+                        <button type="submit" >Delete</button>
+                    </form>
                 <!-- <a th:text="${fileobject.name} + ' ' + ${fileobject.type}"></a> -->
                 <!-- <form th:action="@{/itembook/} + @{${item.id}}" th:method="post" >
                     <button type="submit" >Borrow!</button>

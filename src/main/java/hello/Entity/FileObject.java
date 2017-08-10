@@ -18,8 +18,6 @@ public class FileObject extends AbstractPersistable<Long> {
     @Basic()
     private byte[] content;
 
-
-
     public String getName() {
         return name;
     }

@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/files")
-public class FileIO {
+public class FileCRD {
 
     @Autowired
     private FileObjectRepository fileObjectRepository;
@@ -55,6 +55,13 @@ public class FileIO {
 
         fileObjectRepository.save(fobject);
 
+        return "redirect:/files";
+    }
+
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public String deleteFileObject(@PathVariable Long id){
+        fileObjectRepository.delete(id);
         return "redirect:/files";
     }
 }
