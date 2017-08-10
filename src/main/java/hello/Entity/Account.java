@@ -16,12 +16,14 @@ public class Account extends AbstractPersistable<Long> {
     @Column(name="password")
     private String password;
 
-    @Column(name="permissions")
+    //@Column(name="permissions")
+    @Column(name="role")
     private String permission;
 
-    public Account(String username, String password) {
+    public Account(String username, String password, String permission) {
         this.username = username;
         this.password = password;
+        this.permission = permission;
     }
 
     public Account() {
