@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>BOXI</title>
+</head>
+<body>
+    <h1>BOXIN SISÄLTÖ:</h1>
+
+    <p th:text="${num_of_notes}"></p>
+
+    <ul th:each="fileObject : ${fileObjects}">
+        <li th:text="${fileObject.name}">test</li>
+    </ul>
+
+    <h2>Add content to notebook:</h2>
+    <form th:action="@{/notebook}" method="POST">
+        <input type="text" name="note"/>
+        <input type="submit"/>
+    </form>
+</body>
+</html>

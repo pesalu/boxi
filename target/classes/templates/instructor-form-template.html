@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ItemBook</title>
+</head>
+<body>
+    <h1>INSTRUCTORS:</h1>
+
+    <ul th:each="instructor : ${instructors}">
+        <li>
+            <div>
+                <a th:text="${instructor.firstName} + ' ' + ${instructor.lastName}"></a>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Add content to notebook:</h2>
+    <form th:action="@{/itembook}" method="POST">
+        <p>Name: </p>
+        <input type="text" name="name"/>
+        <p>Type: </p>
+        <input type="text" name="type"/>
+        <input type="submit"/>
+    </form>
+
+    <h3>Borrowed items</h3>
+    <ul th:each="borrowedItem : ${borrowedItems}">
+        <li>
+            <a th:href="@{/itembook/} + @{${borrowedItem.id}}" th:text="${borrowedItem.name} + ' ' + ${borrowedItem.type}"></a>
+        </li>
+    </ul>
+
+</body>
+</html>

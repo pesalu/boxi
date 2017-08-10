@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ItemBook</title>
+</head>
+<body>
+    <h1>ITEM BOOK</h1>
+
+    <ul th:each="item : ${items}">
+        <li>
+            <div>
+                <form th:action="@{/itembook/} + @{${item.id}}" th:method="delete" >
+                    <a th:href="@{/itembook/} + @{${item.id}}" th:text="${item.name} + ' ' + ${item.type}"></a>
+                    <button type="submit" >Delete!</button>
+                </form>
+                <form th:action="@{/itembook/} + @{${item.id}}" th:method="post" >
+                    <button type="submit" >Borrow!</button>
+                </form>
+
+            </div>
+        </li>
+    </ul>
+
+    <h2>Add content to notebook:</h2>
+    <form th:action="@{/itembook}" method="POST">
+        <p>Name: </p>
+        <input type="text" name="name"/>
+        <p>Type: </p>
+        <input type="text" name="type"/>
+        <input type="submit"/>
+    </form>
+
+    <h3>Borrowed items</h3>
+    <ul th:each="borrowedItem : ${borrowedItems}">
+        <li>
+            <a th:href="@{/itembook/} + @{${borrowedItem.id}}" th:text="${borrowedItem.name} + ' ' + ${borrowedItem.type}"></a>
+        </li>
+    </ul>
+
+</body>
+</html>

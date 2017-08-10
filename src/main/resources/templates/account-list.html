@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ItemBook</title>
+</head>
+<body>
+    <h1>USERS</h1>
+
+    <ul th:each="account : ${accounts}">
+        <li>
+            <div>
+                <a th:text="${account.username} + ' ' + ${account.permission}"></a>
+            </div>
+        </li>
+    </ul>
+
+</body>
+</html>

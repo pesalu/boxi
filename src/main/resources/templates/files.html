@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>BOXI</title>
+</head>
+<body>
+    <h1>BOXIN SISÄLTÖ:</h1>
+
+    <ul th:each="fileobject : ${fileobjects}">
+        <li>
+            <div>
+                <!-- <form th:action="@{/itembook/} + @{${item.id}}" th:method="delete" >
+                    <a th:href="@{/itembook/} + @{${item.id}}" th:text="${item.name} + ' ' + ${item.type}"></a>
+                    <button type="submit" >Delete!</button>
+                </form> -->
+                <a th:href="@{/files/} + @{${fileobject.id}}"   th:text="${fileobject.name} + ' ' + ${fileobject.type}"></a>
+                <!-- <a th:text="${fileobject.name} + ' ' + ${fileobject.type}"></a> -->
+                <!-- <form th:action="@{/itembook/} + @{${item.id}}" th:method="post" >
+                    <button type="submit" >Borrow!</button>
+                </form> -->
+
+            </div>
+        </li>
+    </ul>
+
+    <form method="POST" action="/files" enctype="multipart/form-data">
+        <input type="file" name="file" id="file"/>
+        <input type="submit" value="Add!"/>
+    </form>
+
+    <!-- <h2>Add file:</h2>
+    <form th:action="@{/files}" method="POST">
+        <p>Choose: </p>
+        <input type="text" name="name"/>
+        <p>Type: </p>
+        <input type="text" name="type"/>
+        <input type="submit"/>
+    </form> -->
+
+    <!-- <h3>Borrowed items</h3>
+    <ul th:each="borrowedItem : ${borrowedItems}">
+        <li>
+            <a th:href="@{/itembook/} + @{${borrowedItem.id}}" th:text="${borrowedItem.name} + ' ' + ${borrowedItem.type}"></a>
+        </li>
+    </ul>
+    -->
+
+</body>
+</html>
