@@ -1,10 +1,12 @@
 package hello.Entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.File;
+import java.util.List;
 
 @Entity
 @Table(name="user_account")
@@ -20,10 +22,15 @@ public class Account extends AbstractPersistable<Long> {
     @Column(name="role")
     private String permission;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<FileObject> fileObjectList;
+
     public Account(String username, String password, String permission) {
         this.username = username;
         this.password = password;
         this.permission = permission;
+        this.fileObjectList = null;
     }
 
     public Account() {
@@ -51,6 +58,22 @@ public class Account extends AbstractPersistable<Long> {
 
     public void setPermission(String permission) {
         this.permission = permission;
+    }
+
+    public List<FileObject> getFileObjectList() {
+        return fileObjectList;
+    }
+
+    public void setFileObjectList(List<FileObject> fileObjectList) {
+        this.fileObjectList = fileObjectList;
+    }
+
+    public void addFileObject(FileObject fileObject) {
+        this.fileObjectList.add(fileObject);
+    }
+
+    public void removeFileObject(FileObject fileObject) {
+        this.fileObjectList.remove(fileObject);
     }
 
     @Override

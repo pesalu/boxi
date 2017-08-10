@@ -2,10 +2,7 @@ package hello.Entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 public class FileObject extends AbstractPersistable<Long> {
@@ -13,6 +10,12 @@ public class FileObject extends AbstractPersistable<Long> {
     private String name;
     private String type;
     private Long size;
+
+    /*@ManyToOne(optional=false)
+@JoinColumn*/
+    @ManyToOne
+    @JoinColumn
+    private Account account;
 
     @Lob
     @Basic()
@@ -49,4 +52,6 @@ public class FileObject extends AbstractPersistable<Long> {
     public void setType(String type) {
         this.type = type;
     }
+
+
 }
